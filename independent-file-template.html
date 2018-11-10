@@ -1,0 +1,14 @@
+<template id="custom-template3">
+    <h1>This is Template HTML</h1>
+    <h1>From External File</h1>
+    <span name="custom-text">reusable module - the template automaticly add itself into the page that importing it</span>
+</template>
+<script>
+    //this component documeent being imported
+    const importTemplate = document.currentScript.ownerDocument;
+    console.log(importTemplate);
+    const templateNode = importTemplate.getElementById("custom-template3");
+    const destination = document.getElementById("container4");
+
+    destination.appendChild(templateNode.content);
+</script>

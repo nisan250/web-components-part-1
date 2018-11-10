@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--
+        [Deprecation] HTML Imports is deprecated and will be removed in M73, around March 2019. Please use ES modules instead. See https://www.chromestatus.com/features/5144752345317376 for more details.
+    -->
+    <link rel="import" href="file-template.html" id="templateFile">
+    <link rel="import" href="independent-file-template.html" id="templateFile2">
+    <title>Document</title>
+    <style>
+        .content-area {
+            border: 1px solid #ccc;
+            margin: 10px;
+            padding: 10px;
+            text-align: center;
+            color: lightseagreen;
+        }
+    </style>
+</head>
+<body>
+    <div class="content-area">
+        This is Standard HTML
+    </div>
+    <template id="custom-template">
+        <h1>This is Template HTML</h1>
+        <span name="custom-text">using "importNode" to copy</span>
+   </template>
+   <div id="container1" class="content-area">
+
+   </div>
+   <div id="container2" class="content-area">
+
+    </div>
+    <div id="container3" class="content-area">
+
+        </div>
+        <div id="container4" class="content-area">
+
+            </div>
+   <script>
+       window.addEventListener("DOMContentLoaded", function(e) {
+        const theTemplate = document.getElementById("custom-template");
+        const destination = document.getElementById("container1");
+        const newNode = document.importNode(theTemplate, true);
+        newNode.content.querySelector("span").textContent = `using "importNode" to copy`;
+        destination.appendChild(newNode.content);
+
+        const theTemplate2 = document.getElementById("custom-template");
+        const destination2 = document.getElementById("container2");
+        const newNode2 = theTemplate2.cloneNode(true);
+        // newNode2.innerHTML = "<div>some content</div>"
+        newNode2.content.querySelector("span").textContent = `using "cloneNode" to copy`;
+        destination2.appendChild(newNode2.content);
+
+
+        const theTemplate3Link = document.getElementById("templateFile");
+        const destination3 = document.getElementById("container3"); 
+        const temaplate3FileContent = theTemplate3Link.import;
+        const temaplateFile3 = temaplate3FileContent.getElementById("custom-template2");
+        const newNode3 = document.importNode(temaplateFile3.content, true);
+        destination3.appendChild(newNode3);
+
+        // const templateContent = template.content;
+        // const container = document.getElementById("container");
+        
+        // const templateInstance = templateContent.cloneNode(true);
+        // container.appendChild(templateInstance);
+        // const shadowRoot = element.attachShadow({mode: 'open'});
+        // shadowRoot.appendChild(templateContent.cloneNode(true));
+        // customElements.define('counter-element', CounterElement);
+       
+       });
+    </script>
+</body>
+</html>
