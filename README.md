@@ -1,7 +1,6 @@
 # Web Components Training
 
-Web Components Training - Custom Elements
-
+Web Components Training - using template and imports
 
 # Run This Project
 to run this project:
